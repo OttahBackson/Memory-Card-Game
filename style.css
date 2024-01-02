@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #4422ff;
+}
+.container{
+    height: 400px;
+    width: 400px;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+.cards, .card, .view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cards{
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card.shake{
+    animation: shake 0.3s ease-in-out;
+}
+@keyframes shake {
+    0%, 100%{
+        transform: translateX(0);
+    }
+    20%{
+        transform: translateX(-13px);
+    }
+    40%{
+        transform: translateX(13);
+    }
+    60%{
+        transform: translateX(-8px);
+    }
+    80%{
+        transform: translateX(8px);
+    }
+}
+
+.cards .card .view{
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+    background: #fff;
+    position: absolute;
+    border-radius: 7px;
+    backface-visibility: hidden;
+    transition: transform 0.25s linear;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+.cards .card{
+    position: relative;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
+}
+.card .back-view img{
+    max-width: 45px;
+}
+.card .back-view{
+    transform: rotateY(-180deg);
+}
+.card .front-view span i{
+    font-size: 2.5rem;
+    color: #4422ff;
+}
+.card.clicked .back-view{
+    transform: rotateY(0);
+}
+.card.clicked .front-view{
+    transform: rotateY(180deg);
+}
